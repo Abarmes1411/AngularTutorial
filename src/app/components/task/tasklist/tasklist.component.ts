@@ -41,7 +41,7 @@ export class TasklistComponent implements OnInit{
     tarea.changeStatus();
   }
   editarTarea(taskId:number){
-   console.log(`Editing Task with identify ${taskId}`);
+   console.log(`Editar la tarea: ${taskId}`);
   }
   eliminarTarea(taskId:number){
     this.taskList = this.taskList.filter((tarea:Task)=>{

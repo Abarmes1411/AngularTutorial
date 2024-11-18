@@ -23,4 +23,19 @@ export class AppComponent {
   randomInt():number{
     return Math.random()*10;
   }
+
+ // Inicialización del contador
+ contador: number = 0;
+
+ contadorMas(): number {
+   this.contador += 1; 
+   console.log(`Valor actual: ${this.contador}`)
+   return this.contador; 
+ }
+
+ contadorMenos(): number {
+   this.contador -= 1; 
+   console.log(`Valor actual: ${this.contador}`)
+   return this.contador; 
+ }
 }
