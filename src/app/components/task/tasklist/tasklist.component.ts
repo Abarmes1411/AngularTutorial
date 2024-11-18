@@ -27,23 +27,23 @@ export class TasklistComponent implements OnInit{
     });
   }
 
-  raiseTaskPriority(taskId:number){
+  subirPrioridad(taskId:number){
     let tarea:Task = this.getTask(taskId)[0];
     tarea.raisePriority();
   }
 
-  lowerTaskPriority(taskId:number){
+  bajarPrioridad(taskId:number){
     let tarea:Task = this.getTask(taskId)[0];
     tarea.lowerPriority();
   }
-  changeTaskStatus(taskId:number){
+  estadoActividad(taskId:number){
     let tarea:Task = this.getTask(taskId)[0];
     tarea.changeStatus();
   }
-  editTask(taskId:number){
+  editarTarea(taskId:number){
    console.log(`Editing Task with identify ${taskId}`);
   }
-  deleteTask(taskId:number){
+  eliminarTarea(taskId:number){
     this.taskList = this.taskList.filter((tarea:Task)=>{
       return tarea.id != taskId;
     });
