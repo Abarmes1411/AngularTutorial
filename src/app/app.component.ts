@@ -18,7 +18,7 @@ import { TasklistComponent } from './components/task/tasklist/tasklist.component
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  title = 'angular-tutorial-app';
+  title = '@abarmes1411';
 
   randomInt():number{
     return Math.random()*10;
