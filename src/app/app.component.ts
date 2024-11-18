@@ -24,7 +24,6 @@ export class AppComponent {
     return Math.random()*10;
   }
 
- // Inicialización del contador
  contador: number = 0;
 
  contadorMas(): number {
