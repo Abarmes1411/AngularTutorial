@@ -9,16 +9,19 @@ import { TaskComponent } from './components/task/task.component';
 import { ResumeComponent } from './components/task/resume/resume.component';
 import { TaskformComponent } from './components/task/taskform/taskform.component';
 import { TasklistComponent } from './components/task/tasklist/tasklist.component';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, NavbarComponent, FooterComponent, AuthComponent, SiginComponent, LoginComponent, TaskComponent, ResumeComponent, TaskformComponent, TasklistComponent, RouterLink],
+  imports: [RouterOutlet, NavbarComponent, FooterComponent, TaskComponent, ResumeComponent, TaskformComponent, TasklistComponent, RouterLink, FormsModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
 export class AppComponent {
   title = '@abarmes1411';
+  imagenAleatoria:string = ''
+  nombre=""
 
   randomInt():number{
     return Math.random()*10;
@@ -36,5 +39,13 @@ export class AppComponent {
    this.contador -= 1; 
    console.log(`Valor actual: ${this.contador}`)
    return this.contador; 
+ }
+
+
+ 
+
+ muestraImagen(){
+  let randomNum:number = Math.trunc((Math.random()*1000)+100)
+  this.imagenAleatoria = "https://picsum.photos/200/300?random="+randomNum
  }
 }

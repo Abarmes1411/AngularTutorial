@@ -1,61 +1,16 @@
-<ul class="nav nav-pills nav-fill gap-2 p-1 small bg-primary rounded-5 shadow-sm" id="pillNav2" role="tablist" style="--bs-nav-link-color: var(--bs-white); --bs-nav-pills-link-active-color: var(--bs-primary); --bs-nav-pills-link-active-bg: var(--bs-white);">
-  <li class="nav-item" role="presentation">
-    <button class="nav-link active rounded-5" id="home-tab2" data-bs-toggle="tab" type="button" role="tab" aria-selected="true">Home</button>
-  </li>
-  <li class="nav-item" role="presentation">
-    <button class="nav-link rounded-5" id="profile-tab2" data-bs-toggle="tab" type="button" role="tab" aria-selected="false">Profile</button>
-  </li>
-  <li class="nav-item" role="presentation">
-    <button class="nav-link rounded-5" id="contact-tab2" data-bs-toggle="tab" type="button" role="tab" aria-selected="false">Contact</button>
-  </li>
-</ul>
+<app-navbar></app-navbar>
 
+<button (click)="muestraImagen()">Generar Imagen</button>
+<img [src]="imagenAleatoria">
 
-<div class="container">
-  <ol>
-    <li><a routerLink="/list">Listado</a></li>
-    <li><a routerLink="/profile">Perfil</a></li>
-  </ol>
-  <div class="row">
-    <div class="col-md-12">
-      <table class="table">
-        <thead>
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">First</th>
-            <th scope="col">Last</th>
-            <th scope="col">Handle</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>mdo</td>
-          </tr>
-          <tr>
-            <th scope="row">2</th>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>fat</td>
-          </tr>
-          <tr>
-            <th scope="row">3</th>
-            <td>Larry</td>
-            <td>the Bird</td>
-            <td>twitter</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-</div>
 <app-tasklist></app-tasklist>
 <div class="col-md-12">
   <button (click)="contadorMas()">Suma 1</button>
   <button (click)="contadorMenos()">Resta 1</button>
 </div>
+<input [(ngModel)]="imagenAleatoria">
+<p [textContent]="nombre"></p>
 
 <app-footer></app-footer>
+
 <router-outlet />
