@@ -35,11 +35,11 @@ jobs:
         run: npm run build-prod
 
       - name: Rename index.csr.html to index.html
-        run: mv dist/angular-tutorial/browser/index.csr.html dist/angular-tutorial/browser/index.html
+        run: mv dist/AngularTutorial/browser/index.csr.html dist/AngularTutorial/browser/index.html
         
       - name: Deploy Github pages
         uses: crazy-max/ghaction-github-pages@v4.1.0
         with:
-          build_dir: dist/angular-tutorial/browser
+          build_dir: dist/AngularTutorial/browser
         env:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
