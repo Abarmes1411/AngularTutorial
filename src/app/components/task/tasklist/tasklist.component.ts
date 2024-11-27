@@ -5,11 +5,13 @@ import { take } from 'rxjs';
 import { TaskresumeComponent } from '../taskresume/taskresume.component';
 import { ResumeComponent } from "../resume/resume.component";
 import { TaskEvent } from '../../../models/taskevent.model';
+import { TaskformComponent } from '../taskform/taskform.component';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-tasklist',
   standalone: true,
-  imports: [CommonModule, TaskresumeComponent],
+  imports: [CommonModule, TaskresumeComponent,TaskformComponent,FormsModule],
   templateUrl: './tasklist.component.html',
   styleUrl: './tasklist.component.css'
 })
