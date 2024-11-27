@@ -13,7 +13,7 @@ import { TaskEvent } from '../../../models/taskevent.model';
 export class TaskresumeComponent {
 
   @Input()
-  taskInput:Task = new Task(1,"Tarea 1", "Descripción Tarea 1",TaskPriority.LOW,TaskStatus.PENDING,new Date("11/1/2024"),new Date("11/18/2024"),false)
+  taskInput:Task = new Task(1,"Tarea 1", "Descripción Tarea 1",TaskPriority.LOW,new Date("11/1/2024"),false,TaskStatus.PENDING,new Date("11/18/2024"))
 
   @Output()
   eventTaskModify = new EventEmitter<TaskEvent>();

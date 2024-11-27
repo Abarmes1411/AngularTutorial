@@ -13,3 +13,13 @@ export function customValidator(): ValidatorFn {
     return {invalidDate: true}
   };
 }
+
+export function priorityValidator(): ValidatorFn {
+  return (control: AbstractControl): ValidationErrors | null => {
+    let validValues = ['L', 'M', 'H'];
+    if (validValues.includes(control.value)) {
+      return null; 
+    }
+    return { invalidPriority: true };
+  };
+}

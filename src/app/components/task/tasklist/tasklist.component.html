@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="col-md-12">
-      <app-taskform></app-taskform>
+      <app-taskform (taskCreated)="crearTask($event)" [taskToEdit]="taskToEdit"></app-taskform>
     </div>
   </div>
   <div class="row">
