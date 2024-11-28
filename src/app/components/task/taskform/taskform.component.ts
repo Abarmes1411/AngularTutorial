@@ -49,7 +49,7 @@ if(this.formTaskEdit.valid ){
 ngOnChanges() {
   if (this.taskToEdit) {
     const formatedDate = this.formatDate(this.taskToEdit.expirationDate);
-    this.formTaskEdit.patchValue({
+    this.formTaskEdit.setValue({
       name: this.taskToEdit.name,
       description: this.taskToEdit.description,
       priority: this.taskToEdit.priority,

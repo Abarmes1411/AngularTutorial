@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Task, TaskPriority, TaskStatus } from '../../../models/task.model';
 import { CommonModule } from '@angular/common';
 import { TaskEvent } from '../../../models/taskevent.model';
+import { TaskService } from '../../../services/task.service';
 
 @Component({
   selector: 'app-taskresume',
@@ -17,6 +18,11 @@ export class TaskresumeComponent {
 
   @Output()
   eventTaskModify = new EventEmitter<TaskEvent>();
+
+
+  constructor(taskService: TaskService){
+    
+  }
 
   subirPrioridad(taskId:number){
     this.eventTaskModify.emit(new TaskEvent("subirPrioridad", taskId))
