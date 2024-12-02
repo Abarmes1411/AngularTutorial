@@ -1,16 +1,2 @@
-<app-navbar></app-navbar>
-
-<button (click)="muestraImagen()">Generar Imagen</button>
-<img [src]="imagenAleatoria">
-
-<app-tasklist></app-tasklist>
-<div class="col-md-12">
-  <button (click)="contadorMas()">Suma 1</button>
-  <button (click)="contadorMenos()">Resta 1</button>
-</div>
-<input [(ngModel)]="imagenAleatoria">
-<p [textContent]="nombre"></p>
-
-<app-footer></app-footer>
 
 <router-outlet />

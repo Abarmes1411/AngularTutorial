@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { Task, TaskPriority, TaskStatus } from '../../../models/task.model';
+import { Task, TaskPriority, TaskStatus } from '../../../models/task.models';
 import { CommonModule } from '@angular/common';
-import { TaskEvent } from '../../../models/taskevent.model';
+import { TaskEvent } from '../../../models/taskevent.models';
 import { TaskService } from '../../../services/task.service';
 
 @Component({
@@ -14,7 +14,7 @@ import { TaskService } from '../../../services/task.service';
 export class TaskresumeComponent {
 
   @Input()
-  taskInput:Task = new Task(1,"Tarea 1", "Descripción Tarea 1",TaskPriority.LOW,new Date("11/1/2024"),false,TaskStatus.PENDING,new Date("11/18/2024"))
+  taskInput:Task = new Task(1,"Tarea 1", "Descripción Tarea 1",TaskPriority.LOW,TaskStatus.PENDING,new Date("11/1/2024"),new Date("11/18/2024"),false)
 
   @Output()
   eventTaskModify = new EventEmitter<TaskEvent>();

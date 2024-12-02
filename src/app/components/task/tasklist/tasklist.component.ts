@@ -1,79 +1,49 @@
-import { Component, OnInit } from '@angular/core';
-import { Task, TaskPriority, TaskStatus } from '../../../models/task.model';
-import { CommonModule } from '@angular/common';
-import { take } from 'rxjs';
+import {Component, OnInit} from '@angular/core';
+import {Task, TaskPriority, TaskStatus} from '../../../models/task.models';
+import {CommonModule} from '@angular/common';
+import {ResumeComponent} from '../resume/resume.component';
+import {TaskEvent} from '../../../models/taskevent.models';
+import {TaskformComponent} from '../taskform/taskform.component';
+import {TaskService} from '../../../services/task.service';
 import { TaskresumeComponent } from '../taskresume/taskresume.component';
-import { ResumeComponent } from "../resume/resume.component";
-import { TaskEvent } from '../../../models/taskevent.model';
-import { TaskformComponent } from '../taskform/taskform.component';
-import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-tasklist',
   standalone: true,
-  imports: [CommonModule, TaskresumeComponent,TaskformComponent,FormsModule],
+  imports: [CommonModule, ResumeComponent, TaskformComponent],
   templateUrl: './tasklist.component.html',
   styleUrl: './tasklist.component.css'
 })
-export class TasklistComponent implements OnInit{
-  taskList:Task[] = [];
- 
-  taskToEdit: Task = {} as Task;
+export class TasklistComponent implements OnInit {
+
+  tasklist: Task[] = [];
+
+  constructor(private taskService: TaskService) {}
 
   ngOnInit(): void {
-    let task1:Task = new Task (1,"Tarea 1", "Descripción Tarea 1",TaskPriority.LOW,new Date("11/1/2024"),false,TaskStatus.PENDING,new Date("11/18/2024"));
-    let task2:Task = new Task (2,"Tarea 2", "Descripción Tarea 2",TaskPriority.HIGH,new Date("11/5/2024"),false,TaskStatus.IN_PROGRESS,new Date("11/16/2024"));
-    let task3:Task = new Task (3,"Tarea 3", "Descripción Tarea 3",TaskPriority.LOW,new Date("11/21/2024"),false,TaskStatus.IN_PROGRESS,new Date("11/30/2024"));
-    let task4:Task = new Task (4,"Tarea 4", "Descripción Tarea 4",TaskPriority.HIGH,new Date("11/8/2024"),false,TaskStatus.COMPLETED,new Date("11/21/2024"));
-    let task5:Task = new Task (5,"Tarea 5", "Descripción Tarea 5",TaskPriority.MEDIUM,new Date("11/10/2024"),false,TaskStatus.PENDING,new Date("11/30/2024"));
-    this.taskList = [task1,task2,task3,task4,task5];
+    this.tasklist = this.taskService.getTasks()
   }
 
-modifyTask(taskevent:TaskEvent){
-  switch(taskevent.action){
-    case "subirPrioridad": this.subirPrioridad(taskevent.taskid); break;
-    case "bajarPrioridad": this.bajarPrioridad(taskevent.taskid); break;
-    case "estadoActividad": this.estadoActividad(taskevent.taskid); break;
-    case "editarTarea": this.editarTarea(taskevent.taskid); break;
-    case "eliminarTarea": this.eliminarTarea(taskevent.taskid); break;
-  }
-}
+  taskToEdit: Task | null = null; // Tarea actualmente en edición
 
-  getTask(taskId:number):Task[]{
-    return this.taskList.filter((tarea:Task)=>{
-      return tarea.id == taskId;
-    });
+
+  setTaskToEdit(task: Task) {
+    this.taskService.setTaskToEdit(task); // Guardar la tarea en el servicio
+    this.taskToEdit = this.taskService.taskToEdit; // Vincular la tarea con el formulario
   }
 
-  subirPrioridad(taskId:number){
-    let tarea:Task = this.getTask(taskId)[0];
-    tarea.raisePriority();
+  saveTask(task: Task) {
+    if (task.id) {
+      this.taskService.saveTask(task); // Guardar la tarea editada
+    } else {
+      this.taskService.addNewTask(task); // Agregar nueva tarea
+    }
+    this.taskToEdit = null; // Limpiar la tarea en edición
   }
 
-  bajarPrioridad(taskId:number){
-    let tarea:Task = this.getTask(taskId)[0];
-    tarea.lowerPriority();
-  }
-  estadoActividad(taskId:number){
-    let tarea:Task = this.getTask(taskId)[0];
-    tarea.changeStatus();
-  }
 
-  editarTarea(taskId:number){
-  console.log(`Editar la tarea: ${taskId}`);
-  let task = this.getTask(taskId)[0];
-  this.taskToEdit = task;
-  }
 
-  eliminarTarea(taskId:number){
-    this.taskList = this.taskList.filter((tarea:Task)=>{
-      return tarea.id != taskId;
-    });
-  }
-
-  crearTask(task: Task){
-    console.log('Tarea creada '+task)
-    task.id = this.taskList.length + 1;
-    this.taskList.push(task);  
+  modifyTask(taskEvent: TaskEvent) {
+    this.taskService.modifyTask(taskEvent)
   }
 }
